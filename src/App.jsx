@@ -6,10 +6,15 @@ export const App = () => {
   const [recipesArr, setRecipesArr] = useState([]);
 
   const getRecipe = async() => {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${recipe}`);
-    const data = await response.json();
-    console.log(data);
-    setRecipesArr(data.meals);
+    try {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${recipe}`);
+      const data = await response.json();
+      console.log(data);
+      setRecipesArr(data.meals);  
+    } catch (error) {
+      window.location.reload();
+      alert("Recipe not found");
+    }
   }
 
   const changeRecipe = (e) => {
@@ -25,7 +30,7 @@ export const App = () => {
   return (
     <>
       <header>
-        <h1>Recipe-Finder</h1>
+        <h1>Start Cooking!</h1>
         <form action="get-recipe" onSubmit={onSubmit}>
           <label htmlFor="recipe">Search: </label>
           <input type="text" value={recipe} onChange={changeRecipe}/>
@@ -36,7 +41,13 @@ export const App = () => {
           <div key={recipe.idMeal} recipe={recipe}>
             <div className='recipe-container'>
               <img src={recipe.strMealThumb} alt="recipe image"/>
-              <h2>{recipe.strMeal}</h2>
+              <div>
+                <h2>{recipe.strMeal}</h2>
+                <div className='instruction-container'>
+                  <h3>Instructions:</h3>
+                  <p>{recipe.strInstructions}</p>
+                </div>
+              </div>              
             </div>
           </div>
         ))}
