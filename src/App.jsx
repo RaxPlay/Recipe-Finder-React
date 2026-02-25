@@ -1,6 +1,11 @@
 import './Styles/App.css'
 import React, { useState } from 'react'
 
+//Add an 'favorite-list' to project
+const initialState = {
+
+}
+
 export const App = () => {
   const [recipe, setRecipe] = useState('');
   const [recipesArr, setRecipesArr] = useState([]);
@@ -19,6 +24,10 @@ export const App = () => {
 
   const changeRecipe = (e) => {
     setRecipe(e.target.value);
+  }
+
+  const addFavButton = (recipe) => {
+    
   }
 
   const onSubmit = (e) => {
@@ -40,7 +49,10 @@ export const App = () => {
         {recipesArr.map((recipe)=>(
           <div key={recipe.idMeal} recipe={recipe}>
             <div className='recipe-container'>
-              <img src={recipe.strMealThumb} alt="recipe image"/>
+              <button className='add-to-fav-button' onClick={() => addFavButton(recipe)}>
+                <i class="fa-regular fa-bookmark"></i>
+              </button>
+              <img src ={recipe.strMealThumb} alt="recipe image"/>
               <div>
                 <h2>{recipe.strMeal}</h2>
                 <div className='instruction-container'>

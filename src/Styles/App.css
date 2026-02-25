@@ -46,7 +46,6 @@ input{
   border-radius: 10px;
 
   max-width: 400px;
-
   transition: 0.25s;
 }
 .recipe-container img:hover{
@@ -59,6 +58,17 @@ input{
 
 .recipe-container h2, h3{
   text-decoration: underline;
+}
+
+.recipe-container .add-to-fav-button{
+  font-size: 1.3rem;
+  color: white;
+  background-color: #212d30;
+  padding: 5px;
+  border: 1px solid #2f3f43;
+  border-radius: 5px;
+  display: flex;
+  
 }
 
 .instruction-container{
@@ -86,14 +96,49 @@ input{
 }
 
 @media (width > 428px) {
-  header{
-    width: 500px;
-  }
   .content-wrapper{
     grid-template-columns: 100%;
   }
   .recipe-container{
     margin: 20px 0px 0px 0px;
-    width: 760px;
+    display: block;
+    text-align: center;
+  }
+}
+
+@media (width >= 500px){
+  .recipe-container{
+    padding: 30px 5px;
+    margin: 20px;
+  }
+}
+
+@media (width >= 700px){
+  .content-wrapper{
+    grid-template-columns: 50% 50%;
+  }
+  .recipe-container img{
+    width: 250px;
+  }
+}
+
+@media (width >= 900px){
+  .content-wrapper{
+    grid-template-columns: 50% 50%;
+  }
+  .recipe-container img{
+    width: 350px;
+  }
+}
+
+@media (width >= 1500px){
+  .recipe-container{
+    display: flex;
+  }
+  img{
+    height: 400px;
+  }
+  button{
+    height: 33px;
   }
 }
