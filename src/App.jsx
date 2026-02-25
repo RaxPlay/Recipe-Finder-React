@@ -59,7 +59,11 @@ export const App = () => {
                   <h3>Instructions:</h3>
                   <p>{recipe.strInstructions}</p>
                 </div>
-              </div>              
+                <hr />
+                <div className='source-container'>
+                  <p>Source: <a href={recipe.strSource} target='_blank'>click here</a></p>        
+                </div>
+              </div>      
             </div>
           </div>
         ))}

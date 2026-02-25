@@ -24,6 +24,19 @@ input{
   padding: 3px;
 }
 
+a{
+  text-decoration: none;
+  color: white;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+hr{
+  margin: 10px 0;
+  color: #253235;
+}
+
 .content-wrapper{
   display: grid;
   grid-template-columns: 50% 50%;
@@ -68,11 +81,16 @@ input{
   border: 1px solid #2f3f43;
   border-radius: 5px;
   display: flex;
-  
+  text-align: center;
 }
 
 .instruction-container{
   margin-top: 10px;
+}
+
+.source-container{
+  display: flex;
+  justify-content: center;
 }
 
 /*
