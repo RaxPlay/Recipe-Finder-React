@@ -14,6 +14,21 @@ header{
   font-size: 1.3rem;
 }
 
+form{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+form .look-recipe-up-btn{
+  padding: 5px;
+  background-color: #272635;
+}
+
+form .look-recipe-up-btn:hover{
+  background-color: #302f42;
+}
+
 input{
   width: 140px;
   background-color: #272635;
@@ -22,6 +37,33 @@ input{
   border: none;
   border-radius: 5px;
   padding: 3px;
+}
+
+button{
+  font-size: 1.3rem;
+  color: white;
+  background-color: #212d30;
+  padding: 5px;
+  border: 1px solid #2f3f43;
+  border-radius: 5px;
+  display: flex;
+  text-align: center;
+
+  transition: 0.25s;
+}
+
+button:hover{
+  background-color: #2b3b3f;
+  border: 1px solid #1c2527;
+  cursor: pointer;
+}
+
+.remove-fav-button{
+  background-color: #FE8D85;
+}
+
+.remove-fav-button:hover{
+  background-color: #c76f68;
 }
 
 a{
@@ -35,6 +77,18 @@ a:hover{
 hr{
   margin: 10px 0;
   color: #253235;
+}
+
+.show-fav-recipes, .show-home{
+  position: fixed;
+  left: 95%;
+  top: 2%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 .content-wrapper{
@@ -71,17 +125,6 @@ hr{
 
 .recipe-container h2, h3{
   text-decoration: underline;
-}
-
-.recipe-container .add-to-fav-button{
-  font-size: 1.3rem;
-  color: white;
-  background-color: #212d30;
-  padding: 5px;
-  border: 1px solid #2f3f43;
-  border-radius: 5px;
-  display: flex;
-  text-align: center;
 }
 
 .instruction-container{

@@ -1,73 +1,51 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './Styles/App.css'
-import React, { useState } from 'react'
+import { createContext, useReducer, useState } from 'react'
+import { FavRecipesComp } from './Components/FavRecipesComp';
+import { Home } from './Components/Home';
+import { NavLink } from 'react-router-dom';
 
-//Add an 'favorite-list' to project
-const initialState = {
+const initialState = [{
+  recipeName: '',
+  recipeInstructions: '',
+  recipeImg: '',
+  recipeSrc: '',
+  id: new Date().getTime(),
+}];
 
+const reducer = (state = initialState, action =   {}) => {
+  switch(action.type){
+    case 'add-fav':
+      console.log(action.payload);
+      return [...state, action.payload];
+    case 'remove-fav':
+      return(
+        state.filter(recipe => recipe.id !== action.payload)
+      );
+    default:
+      return state
+  }
 }
 
+export const RecipeContext = createContext();
+
 export const App = () => {
-  const [recipe, setRecipe] = useState('');
-  const [recipesArr, setRecipesArr] = useState([]);
-
-  const getRecipe = async() => {
-    try {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${recipe}`);
-      const data = await response.json();
-      console.log(data);
-      setRecipesArr(data.meals);  
-    } catch (error) {
-      window.location.reload();
-      alert("Recipe not found");
-    }
-  }
-
-  const changeRecipe = (e) => {
-    setRecipe(e.target.value);
-  }
-
-  const addFavButton = (recipe) => {
-    
-  }
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    getRecipe();
-  }
-
+  const [showFavList, setShowFavList] = useState(false);
+  const [newState, dispatch] = useReducer(reducer, initialState)
+  
   return (
-    <>
-      <header>
-        <h1>Start Cooking!</h1>
-        <form action="get-recipe" onSubmit={onSubmit}>
-          <label htmlFor="recipe">Search: </label>
-          <input type="text" value={recipe} onChange={changeRecipe}/>
-        </form>
-      </header>
-      <div className='content-wrapper'>
-        {recipesArr.map((recipe)=>(
-          <div key={recipe.idMeal} recipe={recipe}>
-            <div className='recipe-container'>
-              <button className='add-to-fav-button' onClick={() => addFavButton(recipe)}>
-                <i class="fa-regular fa-bookmark"></i>
-              </button>
-              <img src ={recipe.strMealThumb} alt="recipe image"/>
-              <div>
-                <h2>{recipe.strMeal}</h2>
-                <div className='instruction-container'>
-                  <h3>Instructions:</h3>
-                  <p>{recipe.strInstructions}</p>
-                </div>
-                <hr />
-                <div className='source-container'>
-                  <p>Source: <a href={recipe.strSource} target='_blank'>click here</a></p>        
-                </div>
-              </div>      
-            </div>
-          </div>
-        ))}
-      </div>
-    </>
+    <RecipeContext.Provider value={{
+      showFavList,
+      setShowFavList,
+      newState,
+      dispatch
+    }}>
+  
+      <Routes>
+        <Route path='/home' element={<Home/>}></Route>
+        <Route path='/favorite-recipes' element={<FavRecipesComp/>}></Route>
+        <Route path='/*' element={ <Navigate to={'/home'}></Navigate>}></Route>
+      </Routes>
+    </RecipeContext.Provider>
   )
 }
