@@ -136,6 +136,17 @@ hr{
   justify-content: center;
 }
 
+.empty-fav-container{
+  margin-top: 20px;
+  text-align: center;
+}
+
+.tumbleweed{
+  margin-top: 10px;
+  width: 40%;
+  border-radius: 10px;
+}
+
 /*
   ###
   RESPONSIVENESS

@@ -3,7 +3,6 @@ import './Styles/App.css'
 import { createContext, useReducer, useState } from 'react'
 import { FavRecipesComp } from './Components/FavRecipesComp';
 import { Home } from './Components/Home';
-import { NavLink } from 'react-router-dom';
 
 const initialState = [{
   recipeName: '',

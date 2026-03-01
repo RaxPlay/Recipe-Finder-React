@@ -65,11 +65,11 @@ export const Home = () => {
         </form>
       </header>
 
-      <button className='show-fav-recipes' onClick={showFavListFunc}>
-        <NavLink to='/favorite-recipes'>
+      <NavLink to='/favorite-recipes'>
+        <button className='show-fav-recipes' onClick={showFavListFunc}>
           <i className="fa-regular fa-bookmark"></i>
-        </NavLink>
-      </button>
+        </button>
+      </NavLink>
 
       <div className='content-wrapper'>
         {recipesArr.map((recipe)=>(
