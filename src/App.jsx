@@ -37,7 +37,8 @@ export const App = () => {
       showFavList,
       setShowFavList,
       newState,
-      dispatch
+      dispatch,
+      initialState
     }}>
   
       <Routes>

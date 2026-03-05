@@ -1,9 +1,8 @@
-import { useActionState, useContext } from "react"
+import { useContext, useEffect } from "react"
 import { RecipeContext } from "../App"
-import { NavLink, useActionData } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import tumbleweed from '../assets/tumbleweed.mp4'
 import '../Styles/App.css'
-
 
 export const FavRecipesComp = () => {
   const { showFavList, newState, dispatch } = useContext(RecipeContext);

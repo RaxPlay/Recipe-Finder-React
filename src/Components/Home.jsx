@@ -40,6 +40,8 @@ export const Home = () => {
       payload: recipe,
     };
     dispatch(action);
+
+    localStorage.setItem("savedRecipe", recipe);
   }
 
   const onSubmit = (e) => {
