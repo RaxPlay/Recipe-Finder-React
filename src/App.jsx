@@ -20,7 +20,7 @@ const reducer = (state, action = {}) => {
 
 export const RecipeContext = createContext();
 
-function initFunction () {
+function initFunction (initialValue) {
   const items = [];
 
   for (let i = 0; i < localStorage.length; i++) {
