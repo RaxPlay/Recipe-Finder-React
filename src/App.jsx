@@ -4,15 +4,7 @@ import { createContext, useReducer, useState } from 'react'
 import { FavRecipesComp } from './Components/FavRecipesComp';
 import { Home } from './Components/Home';
 
-const initialState = [{
-  recipeName: '',
-  recipeInstructions: '',
-  recipeImg: '',
-  recipeSrc: '',
-  id: new Date().getTime(),
-}];
-
-const reducer = (state = initialState, action =   {}) => {
+const reducer = (state, action = {}) => {
   switch(action.type){
     case 'add-fav':
       console.log(action.payload);
@@ -28,17 +20,39 @@ const reducer = (state = initialState, action =   {}) => {
 
 export const RecipeContext = createContext();
 
+function initFunction () {
+  const items = [];
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+
+    try {
+      const parsed = JSON.parse(value);
+
+      if (parsed && typeof parsed === "object" && parsed.id) {
+        items.push(parsed);
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return items.length ? items : initialValue;
+
+}
+
 export const App = () => {
   const [showFavList, setShowFavList] = useState(false);
-  const [newState, dispatch] = useReducer(reducer, initialState)
-  
+  const [newState, dispatch] = useReducer(reducer, [], initFunction);
+
   return (
     <RecipeContext.Provider value={{
       showFavList,
       setShowFavList,
       newState,
       dispatch,
-      initialState
     }}>
   
       <Routes>

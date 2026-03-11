@@ -1,11 +1,11 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { RecipeContext } from "../App"
 import { NavLink } from "react-router-dom";
 import tumbleweed from '../assets/tumbleweed.mp4'
 import '../Styles/App.css'
 
 export const FavRecipesComp = () => {
-  const { showFavList, newState, dispatch } = useContext(RecipeContext);
+  const { showFavList, newState, dispatch} = useContext(RecipeContext);
 
   const deleteFavRecipe = ({ id }) => {
     const action = {
@@ -13,6 +13,8 @@ export const FavRecipesComp = () => {
       payload: id,
     };
     dispatch(action);
+
+    localStorage.removeItem(`${id}`);
   }
 
   return (
@@ -23,12 +25,12 @@ export const FavRecipesComp = () => {
 
       {showFavList ? (
         <div>
-          {newState.map(recipe => {
+          {newState.map((recipe) => {
             return (
-              <div>
+              <div key={recipe.id}>
                 <li className='recipe-container'>
                   <button className='remove-fav-button' onClick={() => deleteFavRecipe(recipe)}>
-                    <i class="fa-solid fa-trash"></i>
+                    <i className="fa-solid fa-trash"></i>
                   </button>
                   <img src={recipe.recipeImg} alt="recipe image"/>
                   <div>
@@ -60,7 +62,7 @@ export const FavRecipesComp = () => {
 
       <NavLink to='/home'>
         <button className='show-home'>
-          <i class="fa-solid fa-arrow-left"></i>
+          <i className="fa-solid fa-arrow-left"></i>
         </button>
       </NavLink>
     </>

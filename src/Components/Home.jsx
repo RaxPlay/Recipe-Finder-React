@@ -28,6 +28,7 @@ export const Home = () => {
     if(recipeObj.strMeal == ''){
       return;
     };
+
     const recipe = {
       recipeName: recipeObj.strMeal,
       recipeInstructions: recipeObj.strInstructions,
@@ -35,13 +36,15 @@ export const Home = () => {
       recipeSrc: recipeObj.strSource,
       id: new Date().getTime(),
     };
+
     const action = {
       type: 'add-fav',
       payload: recipe,
     };
+
     dispatch(action);
 
-    localStorage.setItem("savedRecipe", recipe);
+    localStorage.setItem(`${recipe.id}`, JSON.stringify(recipe))
   }
 
   const onSubmit = (e) => {
